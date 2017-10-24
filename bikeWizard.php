@@ -15,11 +15,76 @@ function showBikeWizard()
         <script type="text/javascript">
 
             step = 0;
+            var totalPrice = 0;
+            var colour = { name: "none selected", image: ""};
+            var frame = { name: "nothing", price: 0, image: "" };
+            var driveTrain = { name: "none selected", price: 0 };
+            var handlebarRiser = { name: "", price: 0, image: "" };
+            var handlebarFlat = { name: "", price: 0, image: "" };
+            var handlebarCruiser = { name: "", price: 0, image: "" };
+            var seatpost = { name: "", price: 0, image: "" };
+            var saddleRaceWhite = { name: "", price: 0, image: "" };
+            var saddleRaceBlack = { name: "", price: 0, image: "" };
+            var saddleB17Brown = { name: "", price: 0, image: "" };
+            var saddleB17Black = { name: "", price: 0, image: "" };
+            var saddleB67Brown = { name: "", price: 0, image: "" };
+            var saddleB67Black = { name: "", price: 0, image: "" };
+            var customize = [];
+
+            var damperKit = { name: 'Damper Kit', price: 120, image: 'http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/alubox_1.png' };
+            var canopy = { name: 'Canopy', price: 449, image: "http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/o/dogcage_1.png"};
+            var honeycombBoard = { name: 'Honeycomb Board (HCB)', price: 188, image: 'http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/honeycompboard.png' };
+            var convoyBox = { name: 'Convey Box', price: 833, image: 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/7/b/7b31bee8-1a42-45ba-b713-d3bd4086d8d9_lan.png' };
+            var aluminumBox = { name: 'Aluminum Box', price: 341, image: 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/l/alubox.png' };
+            var plasticBox = { name: 'Plastic Box', price: 43, image: 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/l/plastbox.png' };
+            var bbx = { name: 'BBX', colour: '', price: 354, image: '' };
+            var billBoard = { name: 'Billboard', colour: '', price: 69, image: '' };
+            var accessories = [];
+
+
+            var dynamo = { name: 'Dynamo 20" Front Wheel (Alfine/Alex DM24)', price: 166 };
+            var reeLights = { name: 'Reelights', price: 76 };
+            var chromoKickstand = { name: 'Chromo Kickstand', price: 102 };
+            var abus5400 = { name: 'Abus 5400 Granite U-Lock', price: 145 };
+            var abusBordo = { name: 'Abus Bordo 6500 Granite X Plus', price: 131 };
+            var abus9100 = { name: 'Abus 9100 Ivy Chain Lock', price: 131 };
+            var abusBordoPlus = { name: 'Abus Bordo + Detecto 8077 Alarm', price: 319};
+            var extras = [];
+
+            //region Frame option vars
+            var fullBike = { id: 'Fullbike', text:
+                "<div class='col-sm-4 ' >" +
+                "<img src='http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/homepage-full-bike-icon.png' class='imgbikewizard' >" +
+                "       <div class='radio'>" +
+                "           <label><input type='radio' id='fullBikeRadio' name='optradio' value='1438'>Fullbike    €1438</label> " +
+                "       </div> " +
+                "Full Bike\n" +
+                "If you are buying a Full bike, everything to ride safely and securely is included; reflectors complying with EU regulations, front and rear mudguards to keep that gritty spray away and an Abus, insurance approved ring lock." +
+                "</div>", price: 1438 };
+            var frameKit = { id: 'Framekit', text: " <div class='col-sm-4'>" +
+                "<img src='http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/homepage-frame-kit-icon.png' class='imgbikewizard'>" +
+                "        <div class='radio'>" +
+                "           <label><input type='radio' value='1438' id='frameKitRadio' name='optradio'>Framekit    €1438</label> " +
+                "          </div> " +
+                "Framekit\n" +
+                "If you have bought a Bullitt frame, here's what to expect; An aluminium frame, chromoly steel fork, steering rod and fittings, FSA 1 1/8 headsets, tapered headset and spacers and a sturdy kickstand. We also include our newly developed, interchangeable dropouts. Please specify whether you require dropouts for internal or external gears, or horizontal singlespeed dropouts with your order." +
+                "   </div>", price: 1438 };
+            var eBullitt = { id: 'Steps EBullit Full Bike', text: "<div class='col-sm-4'>" +
+                "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/e/b/ebullit_drivetrain2_test_3.png' class='imgbikewizard'>" +
+                "       <div class='radio'>" +
+                "           <label><input type='radio' value='3642' id='eBullittRadio' name='optradio'>Steps EBullit Full Bike    $3642</label> " +
+                "       </div>" +
+                "The STePS eBullitt system includes a 250W, 36-volt electric drive unit, or motor, that will help get you up to speed, but cuts out at 15.5mph (25km/h). You can go faster than that if you want but any speeds over 15.5mph have to be generated by either pedalling or gravity alone. The drive unit produces a maximum torque of 50nm and weighs 3.2kg, making it one of the lightest on the market." +
+                "   </div> ", price: 4261 };
+            //endregion
+
+            //region colour option vars
+
+            //endregion
 
             function wizardButtonClicked()
             {
                 step ++;
-
                 switch(step) {
                     case 0:
                         document.getElementById("bike-wizard-progress-bar").style.width = '0%';
@@ -27,97 +92,109 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 1:
+
                         updateProgressBar('10%');
                         //document.getElementById("bike-wizard-progress-bar").style.width = '10%';
                         document.getElementById("bike-wizard-text-field").innerHTML =
-                            "<div class='wrapper'>" +
-                                " <h1> Step 1 - Choose Your Bike</h1> " +
-                                "<div class='col-sm-4 ' >" +
-                            "<img src='http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/homepage-full-bike-icon.png' class='imgbikewizard' >" +
-                            "       <div class='radio'>" +
-                            "           <label><input type='radio' name='optradio'>Fullbike</label> " +
-                            "       </div> " +
-                            "Full Bike\n" +
-                            "If you are buying a Full bike, everything to ride safely and securely is included; reflectors complying with EU regulations, front and rear mudguards to keep that gritty spray away and an Abus, insurance approved ring lock." +
-                                "</div>" +
-
-                            "   <div class='col-sm-4'>" +
-                            "<img src='http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/homepage-frame-kit-icon.png' class='imgbikewizard'>" +
-
-                            "        <div class='radio'>" +
-                            "           <label><input type='radio' name='optradio'>Framekit</label> " +
-                            "          </div> " +
-                            "Framekit\n" +
-                            "If you have bought a Bullitt frame, here's what to expect; An aluminium frame, chromoly steel fork, steering rod and fittings, FSA 1 1/8 headsets, tapered headset and spacers and a sturdy kickstand. We also include our newly developed, interchangeable dropouts. Please specify whether you require dropouts for internal or external gears, or horizontal singlespeed dropouts with your order." +
-                            "   </div>" +
-
-                            "   <div class='col-sm-4'>" +
-                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/e/b/ebullit_drivetrain2_test_3.png' class='imgbikewizard'>" +
-                            "       <div class='radio'>" +
-                            "           <label><input type='radio' name='optradio'>Steps EBullit Full Bike</label> " +
-                            "       </div>" +
-                            "The STePS eBullitt system includes a 250W, 36-volt electric drive unit, or motor, that will help get you up to speed, but cuts out at 15.5mph (25km/h). You can go faster than that if you want but any speeds over 15.5mph have to be generated by either pedalling or gravity alone. The drive unit produces a maximum torque of 50nm and weighs 3.2kg, making it one of the lightest on the market." +
-                            "   </div> " +
-                            "</div> ";
+                            "<div class='wrapper'><h1> Step 1 - Choose Your Bike</h1> " + fullBike.text + frameKit.text + eBullitt.text + "</div> ";
                         console.log(step);
                         break;
                     case 2:
+                        if (jQuery("#fullBikeRadio").is(':checked')) {
+                            frame.name = "Fullbike";
+                            frame.price = 1438;
+                            frame.image = 'http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/homepage-full-bike-icon.png';
+                        } else if (jQuery("#frameKitRadio").is(':checked')) {
+                            frame.name = "Framekit";
+                            frame.price = 1438;
+                            frame.image = 'http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/homepage-frame-kit-icon.png';
+                        } else if (jQuery("#eBullittRadio").is(':checked')) {
+                            frame.name = "Steps EBullit Full Bike";
+                            frame.price += 3642;
+                            frame.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/e/b/ebullit_drivetrain2_test_3.png';
+                        }
                         //document.getElementById("bike-wizard-progress-bar").style.width = '20%';
                         updateProgressBar('20%');
                         document.getElementById("bike-wizard-text-field").innerHTML =
                             "<div class='wrapper'>" +
-                            "   <h1> Step 2 - Choose Your Color</h1>" +
+                            "   <h1> Step 2 - Choose Your colour</h1>" +
                             " <div class='col-sm-4'>" +
                             "    <div class='radio'>" +
-                           " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-classic_1.png' class='imgcolorbikewizard'> " +
-                            "       <label><input type='radio' name='optradio'>Classic</label> " +
+                           " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-classic_1.png' class='imgcolourbikewizard'> " +
+                            "       <label><input type='radio' id='classicRadio' name='optradio'>Classic</label> " +
                             "   </div> "+
                             "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-race_1_1.png' class='imgcolorbikewizard'> " +
-                            "       <label><input type='radio' name='optradio'>Race</label> " +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-race_1_1.png' class='imgcolourbikewizard'> " +
+                            "       <label><input type='radio' id='raceRadio' name='optradio'>Race</label> " +
                             "   </div> " +
                             "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/p/e/pepper_color.png' class='imgcolorbikewizard'> " +
-                            "       <label><input type='radio' name='optradio'>Pepper</label>" +
-                            "   </div> " +
-                            " </div>" +
-
-                            " <div class='col-sm-4'>" +
-                            "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/s/u/submarine_color.png' class='imgcolorbikewizard'> " +
-                            "       <label><input type='radio' name='optradio'>Submarine</label>" +
-                            "   </div> " +
-                            "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-bluebird_1.png' class='imgcolorbikewizard'> " +
-                            "       <label><input type='radio' name='optradio'>Bluebird</label>" +
-                            "   </div> " +
-                            "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-generic_2.png' class='imgcolorbikewizard'> " +
-                            "       <label><input type='radio' name='optradio'>Milk Plus</label>" +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/p/e/pepper_color.png' class='imgcolourbikewizard'> " +
+                            "       <label><input type='radio' id='pepperRadio' name='optradio'>Pepper</label>" +
                             "   </div> " +
                             " </div>" +
-
                             " <div class='col-sm-4'>" +
                             "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-clockwork_1.png' class='imgcolorbikewizard'> " +
-
-                            "       <label><input type='radio' name='optradio'>Clockwork</label>" +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/s/u/submarine_color.png' class='imgcolourbikewizard'> " +
+                            "       <label><input type='radio' id='submarineRadio' name='optradio'>Submarine</label>" +
                             "   </div> " +
                             "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-lizzard-king_1.png' class='imgcolorbikewizard'> " +
-
-                            "       <label><input type='radio' name='optradio'>Lizardking</label>" +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-bluebird_1.png' class='imgcolourbikewizard'> " +
+                            "       <label><input type='radio' id='bluebirdRadio' name='optradio'>Bluebird</label>" +
                             "   </div> " +
                             "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-raw_1.png' class='imgcolorbikewizard'> " +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-generic_2.png' class='imgcolourbikewizard'> " +
+                            "       <label><input type='radio' id='milkplusRadio' name='optradio'>Milk Plus</label>" +
+                            "   </div> " +
+                            " </div>" +
+                            " <div class='col-sm-4'>" +
+                            "   <div class='radio'>" +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-clockwork_1.png' class='imgcolourbikewizard'> " +
 
-                            "       <label><input type='radio' name='optradio'>Rå</label>" +
+                            "       <label><input type='radio' id='clockworkRadio' name='optradio'>Clockwork</label>" +
+                            "   </div> " +
+                            "   <div class='radio'>" +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-lizzard-king_1.png' class='imgcolourbikewizard'> " +
+
+                            "       <label><input type='radio' name='optradio' id='lizzardKingRadio' >Lizardking</label>" +
+                            "   </div> " +
+                            "   <div class='radio'>" +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-raw_1.png' class='imgcolourbikewizard'> " +
+
+                            "       <label><input type='radio' name='optradio' id='råRadio'>Rå</label>" +
                             "   </div> " +
                             " </div>" +
                             "</div>";
                         console.log(step);
                         break;
                     case 3:
+                        if (jQuery("#classicRadio").is(':checked')) {
+                            colour.name = "Classic";
+                            colour.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-classic_1.png';
+                        } else if (jQuery("#raceRadio").is(':checked')) {
+                            colour.name = "Race";
+                            colour.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-race_1_1.png';
+                        } else if (jQuery("#pepperRadio").is(':checked')) {
+                            colour.name = "Pepper";
+                            colour.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/p/e/pepper_color.png';
+                        } else if (jQuery("#submarineRadio").is(':checked')) {
+                            colour.name = "Submarine";
+                            colour.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/s/u/submarine_color.png';
+                        } else if (jQuery("#bluebirdRadio").is(':checked')) {
+                            colour.name = "Bluebird";
+                            colour.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-bluebird_1.png';
+                        } else if (jQuery("#milkplusRadio").is(':checked')) {
+                            colour.name = "Milk Plus";
+                            colour.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-generic_2.png';
+                        } else if (jQuery("#clockworkRadio").is(':checked')) {
+                            colour.name = "Clockwork";
+                            colour.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-clockwork_1.png';
+                        } else if (jQuery("#lizzardKingRadio").is(':checked')) {
+                            colour.name = "Lizzard King";
+                            colour.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-lizzard-king_1.png';
+                        } else if (jQuery("#råRadio").is(':checked')) {
+                            colour.name = "Rå";
+                            colour.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-raw_1.png';
+                        }
                         //document.getElementById("bike-wizard-progress-bar").style.width = '30%';
                         updateProgressBar('30%');
                         document.getElementById("bike-wizard-text-field").innerHTML =
@@ -127,28 +204,28 @@ function showBikeWizard()
                             "<div class='col-sm-6'>" +
 
                             "       <div class='radio'>" +
-                            "           <label><input type='radio' name='optradio'>SINGLESPEED COMPONENT GROUP  </label> " +
+                            "           <label><input type='radio' id='singleRadio' name='optradio'>SINGLESPEED COMPONENT GROUP    +€746.00</label> " +
                             "       </div> "+
                             "       <div class='radio'>" +
-                            "           <label><input type='radio' name='optradio'>NEXUS 7 COMPONENT GROUP  </label> " +
+                            "           <label><input type='radio' id='nexus7Radio' name='optradio'>NEXUS 7 COMPONENT GROUP    +€688.00</label> " +
                             "       </div> " +
                             "       <div class='radio'>" +
-                            "           <label><input type='radio' name='optradio'>ALFINE 8 COMPONENT GROUP</label>" +
+                            "           <label><input type='radio' id='alfine8Radio' name='optradio'>ALFINE 8 COMPONENT GROUP    +€1,037.00</label>" +
                             "       </div> " +
                             "       <div class='radio'>" +
-                            "        <label><input type='radio' name='optradio'>ALFINE 8 GATES COMPONENT GROUP  </label>" +
+                            "        <label><input type='radio' id='alfine82Radio' name='optradio'>ALFINE 8 GATES COMPONENT GROUP    +€1,322.50</label>" +
                             "       </div> " +
                             "</div>" +
 
                             "<div class='col-sm-6'>" +
                             "   <div class='radio'>" +
-                            "       <label><input type='radio' name='optradio'>ALFINE DI2 11/GATES COMPONENT GROUP </label>" +
+                            "       <label><input type='radio' id='alfineDIRadio' name='optradio'>ALFINE DI2 11/GATES COMPONENT GROUP    +€2,024.00</label>" +
                             "   </div> " +
                             "   <div class='radio'>" +
-                            "       <label><input type='radio' name='optradio'>DEORE 20 COMPONENT GROUP  </label>" +
+                            "       <label><input type='radio' id='deoreRadio' name='optradio'>DEORE 20 COMPONENT GROUP      +€1,037.00</label>" +
                             "   </div> " +
                             "   <div class='radio'>" +
-                            "       <label><input type='radio' name='optradio'>XT 22 COMPONENT GROUP  </label>" +
+                            "       <label><input type='radio' id='xtRadio' name='optradio'>XT 22 COMPONENT GROUP    +€1,699.00</label>" +
                             "   </div> " +
                             "</div>" +
                             "<br>" +
@@ -399,8 +476,29 @@ function showBikeWizard()
                         console.log(step);
                         break ;
                     case 4:
-                        //document.getElementById("bike-wizard-progress-bar").style.width = '40%';
                         updateProgressBar('40%');
+                        if (jQuery("#singleRadio").is(':checked')) {
+                            driveTrain.name = "SINGLESPEED COMPONENT GROUP";
+                            driveTrain.name = 746;
+                        } else if(jQuery("#nexus7Radio").is(':checked')) {
+                            driveTrain.name  = "NEXUS 7 COMPONENT GROUP";
+                            driveTrain.price = 688;
+                        } else if(jQuery("#alfine8Radio").is(':checked')) {
+                            driveTrain.name = "ALIFINE 8 COMPONENT GROUP";
+                            driveTrain.price = 1037;
+                        } else if(jQuery("#alfine82Radio").is(':checked')) {
+                            driveTrain.name = "ALFINE 8 GATES COMPONENT GROUP";
+                            driveTrain.price = 1322.5;
+                        } else if(jQuery("#alfineDIRadio").is(':checked')) {
+                            driveTrain.name = "ALFINE DI2 11/GATES COMPONENT GROUP";
+                            driveTrain.price = 2024;
+                        } else if(jQuery("#deoreRadio").is(':checked')) {
+                            driveTrain.name = "DEORE 20 COMPONENT GROUP";
+                            driveTrain.price = 1037;
+                        } else if(jQuery("#xtRadio").is(':checked')) {
+                            driveTrain.name = "XT 22 COMPONENT GROUP";
+                            driveTrain.prive = 1699;
+                        }
                         document.getElementById("bike-wizard-text-field").innerHTML =  "<div class='wrapper'>" +
                             "<h1> Step 4 - Customise</h1>" +
                             "All our models feature powerful, hydraulic disc brake systems for smoother, more controlled stopping. We have purposefully chosen brakes from leading manufacturers Shimano, Magura and Tektro and matched them to the most relevant component groups. For simple aftermarket servicing, we have also ensured our brakes have great brake pad durability and easy aftermarket servicing." +
@@ -408,22 +506,22 @@ function showBikeWizard()
                             " <div class='col-sm-4'>" +
                             "<h3> Handlebars </h3>" +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>Riserbar</label>" +
+                            "<label><input type='checkbox' id='riserCheck' value=''>Riserbar    +€26.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>Flatbar</label>" +
+                            "<label><input type='checkbox' id='flatCheck' value=''>Flatbar    +€26.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>Cruiser</label>" +
+                            "<label><input type='checkbox' id='cruiserCheck' value=''>Cruiser    +€26.00</label>" +
                             "</div>" +
                             "</div> " +
                             " <div class='col-sm-4'>" +
                             "<h3> Seatposts </h3>" +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>Short</label>" +
+                            "<label><input type='checkbox' id='shortRadio' value=''>Short    +€42.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>Long</label>" +
+                            "<label><input type='checkbox' id='longRadio' value=''>Long    +€42.00</label>" +
                             "</div>" +
                             "<p>The Bullitt is a one frame solution, designed to fit the greatest number of people and we have spent years tweaking geometry. A sloping top tube, short back-end and low bottom bracket means great manueveurability. We offer two different seatpost lengths and two different stem lengths to cater for different users and our Easyup Stemlifter means the cockpit can quickly and easily be raised to enable more space in the cargo area.</p>" +
                             "</div> " +
@@ -432,40 +530,107 @@ function showBikeWizard()
                             "  <div class='checkbox'>" +
                             " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/l/black_1.png' class='imgbikewizard'> " +
 
-                            "<label><input type='checkbox' value=''>Race Black</label>" +
+                            "<label><input type='checkbox' id='raceBlackCheck' value=''>Race Black    +€54.00</label>" +
                              "</div> " +
                             "  <div class='checkbox'> " +
                             " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/a/saddle_white.png' class='imgbikewizard'> " +
-                            "<label><input type='checkbox' value=''>Race White</label>" +
+                            "<label><input type='checkbox' id='raceWhiteCheck' value=''>Race White    +€54.00</label>" +
                             "</div> " +
 
                             "  <div class='checkbox'> " +
                             " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/a/saddle_brown.png' class='imgbikewizard'> " +
 
-                            "<label><input type='checkbox' value=''>Brooks B17, Brown </label>" +
+                            "<label><input type='checkbox' id='brooksBrownB17Check' value=''>Brooks B17, Brown    +€114.00</label>" +
                             "</div> " +
 
                             "  <div class='checkbox'> " +
                             " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/l/black_1_3.png' class='imgbikewizard'> " +
 
-                            "<label><input type='checkbox' value=''>Brooks B17, Black  </label>" +
+                            "<label><input type='checkbox' id='brooksB17BlackCheck' value=''>Brooks B17, Black    +€114.00</label>" +
                             "</div> " +
 
                             "  <div class='checkbox'> " +
                             " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/a/saddle_brown_1.png' class='imgbikewizard'> " +
 
-                            "<label><input type='checkbox' value=''>Brooks B67, Brown    </label>" +
+                            "<label><input type='checkbox' id='brooksB67BrownCheck' value=''>Brooks B67, Brown    +€125.00</label>" +
                             "</div> " +
 
                             "  <div class='checkbox'> " +
                             " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/l/black_1_2.png' class='imgbikewizard'> " +
-                            "<label><input type='checkbox' value=''>Brooks B67, Black  </label>" +
+                            "<label><input type='checkbox' id='brooksB67BlackCheck' value=''>Brooks B67, Black    +€125.00</label>" +
                             "</div>" +
                             "</div> " +
                             "</div>";
                         console.log(step);
                         break;
                     case 5:
+                        if (jQuery("#riserCheck").is(':checked')) {
+                            handlebarRiser.name = 'Riserbar';
+                            handlebarRiser.price = 26;
+                            handlebarRiser.image = '';
+                            customize.push(handlebarRiser);
+                        }
+                        if (jQuery("#flatCheck").is(':checked')) {
+                            handlebarFlat.name = 'Flatbar';
+                            handlebarFlat.price = 26;
+                            handlebarFlat.image = '';
+                            customize.push(handlebarFlat);
+                        }
+                        if (jQuery("#cruiserCheck").is(':checked')) {
+                            handlebarCruiser.name = 'Cruiserbar';
+                            handlebarCruiser.price = 26;
+                            handlebarCruiser.image = '';
+                            customize.push(handlebarCruiser);
+                        }
+                        if (jQuery("#shortRadio").is(':checked')) {
+                            seatpost.name = 'Short seatpost';
+                            seatpost.price = 42;
+                            seatpost.image = '';
+                            customize.push(seatpost);
+                        }
+                        if (jQuery("#longRadio").is(':checked')) {
+                            seatpost.name = "Long seatpost";
+                            seatpost.price = 42;
+                            seatpost.image = '';
+                            customize.push(seatpost);
+                        }
+                        if (jQuery("#raceBlackCheck").is(':checked')) {
+                            saddleRaceBlack.name = 'Race Black';
+                            saddleRaceBlack.price = 54;
+                            saddleRaceBlack.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/l/black_1.png';
+                            customize.push(saddleRaceBlack);
+                        }
+                        if (jQuery("#raceWhiteCheck").is(':checked')) {
+                            saddleRaceWhite.name = 'Race White';
+                            saddleRaceWhite.price = 54;
+                            saddleRaceWhite.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/a/saddle_white.png';
+                            customize.push(saddleRaceWhite);
+                        }
+                        if (jQuery("#brooksBrownB17Check").is(':checked')) {
+                            saddleB17Brown.name = 'Brooks B17, Brown';
+                            saddleB17Brown.price = 114;
+                            saddleB17Brown.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/a/saddle_brown.png';
+                            customize.push(saddleB17Black);
+                        }
+                        if (jQuery("#brooksB17BlackCheck").is(':checked')) {
+                            saddleB17Black.name = 'Brooks B17, Black';
+                            saddleB17Black.price = 114;
+                            saddleB17Black.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/l/black_1_3.png';
+                            customize.push(saddleB17Black);
+                        }
+                        if (jQuery("#brooksB67BrownCheck").is(':checked')) {
+                            saddleB67Brown.name = 'Brooks B67, Brown';
+                            saddleB67Brown.price = 125;
+                            saddleB67Brown.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/a/saddle_brown_1.png';
+                            customize.push(saddleB67Brown);
+                        }
+                        if (jQuery("#brooksB67BlackCheck").is(':checked')) {
+                            saddleB67Black.name = 'Brooks B67, Black';
+                            saddleB67Black.price = 125;
+                            saddleB67Black.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/l/black_1_2.png'
+                            customize.push(saddleB67Black);
+                        }
+                        console.log();
                         //document.getElementById("bike-wizard-progress-bar").style.width = '50%';
                         updateProgressBar('50%');
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
@@ -473,52 +638,49 @@ function showBikeWizard()
                             " <div class='col-sm-4'>" +
                             "  <div class='checkbox'> " +
                             "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/o/dogcage_1.png' class='imgbikewizard' >" +
-                            "<label><input type='checkbox' value=''>Canopy</label>" +
+                            "<label><input type='checkbox' id='canopyCheck' value=''>Canopy    +€449.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
                             "<img src='http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/alubox_1.png' class='imgbikewizard' >" +
-                            "<label><input type='checkbox' value=''>Damper kit</label>" +
+                            "<label><input type='checkbox' id='damperCheck' value=''>Damper kit    +€120.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
                             "<img src='http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/honeycompboard.png' class='imgbikewizard' >" +
-                            "<label><input type='checkbox' value=''>Honeycomb board</label>" +
+                            "<label><input type='checkbox' id='honeyCombCheck' value=''>Honeycomb board    +€188.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
                             "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/7/b/7b31bee8-1a42-45ba-b713-d3bd4086d8d9_lan.png' class='imgbikewizard' >" +
-                            "<label><input type='checkbox' value=''>Convoy box</label>" +
+                            "<label><input type='checkbox' id='convoyCheck' value=''>Convoy box    +€833.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
                             "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/l/alubox.png' class='imgbikewizard >" +
-                            "<label><input type='checkbox' value=''>Aluminium box</label>" +
+                            "<label><input type='checkbox' id='aluCheck' value=''>Aluminium box    +€341.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
                             "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/l/plastbox.png' class='imgbikewizard' >" +
-                            "<label><input type='checkbox' value=''>Plastic box</label>" +
+                            "<label><input type='checkbox' id='plasticCheck' value=''>Plastic box    +€43.00</label>" +
                             "</div> " +
                             "</div>" +
 
                             " <div class='col-sm-4'>" +
                             "<h3> BBX </h3>" +
 
-                        "<img src='http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/sidepanel_kit.png' class='imgbikewizard' >" +
-
-
-
-
-                        "  <div class='radio'> " +
+                            "<img src='http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/sidepanel_kit.png' class='imgbikewizard' >" +
+                            "  <div class='radio'> " +
                             "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/b/bbx-sidepanel-kit-indigo.png' class='imgbikewizard' >" +
-                            "<label><input type='radio' value='optradio'>Blue</label>" +
+                            "<label><input type='radio' id='blueBBXRadio' value='optradio'>Blue    +€354.00" +
+                            "</label>" +
                             "</div> " +
 
                             "  <div class='radio'> " +
                             "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/b/bbx-sidepanel-kit-race.png' class='imgbikewizard' >" +
 
-                            "<label><input type='radio' value='optradio'>Green</label>" +
+                            "<label><input type='radio' id='greenBBXRadio' value='optradio'>Green     +€354.00</label>" +
                             "</div> " +
                             "  <div class='radio'> " +
                             "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/b/bbx-sidepanel-kit-submarine_1.png' class='imgbikewizard' >" +
 
-                            "<label><input type='radio' value='optradio'>Yellow</label>" +
+                            "<label><input type='radio' id='yellowBBXRadio' value='optradio'>Yellow    +€354.00</label>" +
                             "</div> " +
                             "</div>" +
 
@@ -527,39 +689,39 @@ function showBikeWizard()
                             "<img src='http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/billboard.png' class='imgbikewizard' >" +
 
                             "  <div class='radio'> " +
-                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/3/2/32_1_1.png' class='imgcolorbikewizard' >" +
-                            "<label><input type='radio' value='optradio'>1 </label>" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/3/2/32_1_1.png' class='imgcolourbikewizard' >" +
+                            "<label><input type='radio' id='whiteBillRadio' value='optradio'>1    +€69.00</label>" +
                             "</div> " +
 
                             "  <div class='radio'> " +
-                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/3/2/323_2.png' class='imgcolorbikewizard' >" +
-                            "<label><input type='radio' value='optradio'>2   </label>" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/3/2/323_2.png' class='imgcolourbikewizard' >" +
+                            "<label><input type='radio' id='blackBillRadio' value='optradio'>2    +€69.00</label>" +
                             "</div> " +
 
                             "  <div class='radio'> " +
-                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/5/0/502_4.png' class='imgcolorbikewizard' >" +
-                            "<label><input type='radio' value='optradio'>3  </label>" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/5/0/502_4.png' class='imgcolourbikewizard' >" +
+                            "<label><input type='radio' id='redBillRadio' value='optradio'>3    +€69.00</label>" +
                             "</div> " +
 
                             "  <div class='radio'> " +
-                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/5/0/503_3.png' class='imgcolorbikewizard' >" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/5/0/503_3.png' class='imgcolourbikewizard' >" +
 
-                            "<label><input type='radio' value='optradio'>4  </label>" +
+                            "<label><input type='radio' id='orangeBillRadio' value='optradio'>4    +€69.00</label>" +
                             "</div> " +
                             "  <div class='radio'> " +
-                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/5/0/504_1_1.png' class='imgcolorbikewizard' >" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/5/0/504_1_1.png' class='imgcolourbikewizard' >" +
 
-                            "<label><input type='radio' value='optradio'>5  </label>" +
+                            "<label><input type='radio' id='blueBillRadio' value='optradio'>5    +€69.00</label>" +
                             "</div> " +
                             "  <div class='radio'> " +
-                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/5/0/506_3.png' class='imgcolorbikewizard' >" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/5/0/506_3.png' class='imgcolourbikewizard' >" +
 
-                            "<label><input type='radio' value='optradio'>6  </label>" +
+                            "<label><input type='radio' id='greenBillRadio' value='optradio'>6    +€69.00</label>" +
                             "</div> " +
                             "  <div class='radio'> " +
-                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/5/0/508_3.png' class='imgcolorbikewizard' >" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/5/0/508_3.png' class='imgcolourbikewizard' >" +
 
-                            "<label><input type='radio' value='optradio'>7  </label>" +
+                            "<label><input type='radio' id='yellowBillRadio' value='optradio'>7    +€69.00</label>" +
                             "</div> " +
 
                             "</div>" +
@@ -570,48 +732,116 @@ function showBikeWizard()
                         break;
                     case 6:
                         //document.getElementById("bike-wizard-progress-bar").style.width = '60%';
+                        if (jQuery("#canopyCheck").is(':checked')) {
+                            accessories.push(canopy);
+                        }
+                        if (jQuery("#damperCheck").is(':checked')) {
+                            accessories.push(damperKit);
+                        }
+                        if (jQuery("#honeyCombCheck").is(':checked')) {
+                            accessories.push(honeycombBoard);
+                        }
+                        if (jQuery("#convoyCheck").is(':checked')) {
+                            accessories.push(convoyBox);
+                        }
+                        if (jQuery("#aluCheck").is(':checked')) {
+                            accessories.push(aluminumBox);
+                        }
+                        if (jQuery("#plasticCheck").is(':checked')) {
+                            accessories.push(plasticBox);
+                        }
+                        if (jQuery("#blueBBXRadio").is(':checked')) {
+                            bbx.colour = 'Blue';
+                        } else if (jQuery("#greenBBXRadio").is(':checked')) {
+                            bbx.colour = 'Green';
+                        } else if (jQuery("#yellowBBXRadio").is(':checked')) {
+                            bbx.colour = 'Yellow';
+                        }
+                        accessories.push(bbx);
+                        if (jQuery("#whiteBillRadio").is(':checked')) {
+                            billBoard.colour = 'White';
+                        } else if (jQuery("#blackBillRadio").is(':checked')) {
+                            billBoard.colour = 'Black';
+                        } else if (jQuery("#redBillRadio").is(':checked')) {
+                            billBoard.colour = 'Red';
+                        } else if (jQuery("#orangeBillRadio").is(':checked')) {
+                            billBoard.colour = 'Orange';
+                        } else if (jQuery("#blueBillRadio").is(':checked')) {
+                            billBoard.colour = 'Blue';
+                        } else if (jQuery("#greenBillRadio").is(':checked')) {
+                            billBoard.colour = 'Green';
+                        } else if (jQuery("#yellowBillRadio").is(':checked')) {
+                            billBoard.colour = 'Yellow';
+                        }
+                        accessories.push(billBoard);
                         updateProgressBar('60%');
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
                             "<h1> Step 6 - Extras</h1>" +
                             "<div class='col-sm-6'>" +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>DYNAMO 20\" FRONT WHEEL (ALFINE/ALEX DM24)  </label>" +
+                            "<label><input type='checkbox' id='dynamoCheck' value=''>DYNAMO 20\" FRONT WHEEL (ALFINE/ALEX DM24)    +€166.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>REELIGHTS </label>" +
+                            "<label><input type='checkbox' id='reeLightsCheck' value=''>REELIGHTS    +€76.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>CROMO KICKSTAND  )</label>" +
+                            "<label><input type='checkbox' id='chromoCheck' value=''>CROMO KICKSTAND    +€102.00</label>" +
                             "</div>" +
                             "</div> " +
                             "<div class='col-sm-6'>" +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>ABUS 5400 GRANITE U-LOCK</label>" +
+                            "<label><input type='checkbox' id='abus5400Check' value=''>ABUS 5400 GRANITE U-LOCK    +€145.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>ABUS BORDO 6500 GRANIT X PLUS  </label>" +
+                            "<label><input type='checkbox' id='abusBordoCheck' value=''>ABUS BORDO 6500 GRANIT X PLUS    +€131.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>ABUS 9100 IVY CHAIN LOCK </label>" +
+                            "<label><input type='checkbox' id='abus9100Check' value=''>ABUS 9100 IVY CHAIN LOCK    +€131.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>ABUS BORDO + DETECTO 8077 ALARM  </label>" +
+                            "<label><input type='checkbox' id='abusBordoPlusCheck' value=''>ABUS BORDO + DETECTO 8077 ALARM    +€319.00</label>" +
                             "</div>" +
                             "</div> " +
-
-
                             "</div>";
                         console.log(step);
                         break;
                     case 7:
+                        if (jQuery("#dynamoCheck").is(':checked')) {
+                            extras.push(dynamo);
+                        }
+                        if (jQuery("#reeLightsCheck").is(':checked')) {
+                            extras.push(reeLights);
+                        }
+                        if (jQuery("#chromoCheck").is(':checked')) {
+                            extras.push(chromoKickstand);
+                        }
+                        if (jQuery("#abus5400Check").is(':checked')) {
+                            extras.push(abus5400);
+                        }
+                        if (jQuery("#abusBordoCheck").is(':checked')) {
+                            extras.push(abusBordo);
+                        }
+                        if (jQuery("#abus9100Check").is(':checked')) {
+                            extras.push(abus9100);
+                        }
+                        if (jQuery("#abusBordoPlusCheck").is(':checked')) {
+                            extras.push(abusBordoPlus);
+                        }
+
+                        calculateTotalPrice();
                         //document.getElementById("bike-wizard-progress-bar").style.width = '70%';
                         updateProgressBar('70%');
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
                             "<h1>Step 7 - What you are buying</h1>" +
                             "<p> Here you will find a list of what items you have checked off, and recommendations on what you are missing. <br>" +
                             "Here you can check off things if you have regret or do not want to buy them. <br> " +
-                            "If everything seems as it is supposed to, then just click next and go to the payment site. </p>" +
-                            "</div>";
+                            "If everything seems like it is in order, then just click next and go to the payment site. </p>" +
+                            "</div>" +
+                            "<div>" +
+                            "" +
+                            "" +
+                            "" +
+                            "Subtotal: €" + totalPrice + "</div>";
                         console.log(step);
                         break;
                     case 8:
@@ -692,8 +922,20 @@ function showBikeWizard()
                         break;
 
                 }
+            }
 
-
+            function calculateTotalPrice() {
+                totalPrice += frame.price;
+                totalPrice += driveTrain.price;
+                for (i = 0; i < customize.length; i++) {
+                    totalPrice += customize[i].price;
+                }
+                for (j = 0; j < accessories.length; j++) {
+                    totalPrice += accessories[j].price;
+                }
+                for (k = 0; k < extras.length; k++) {
+                    totalPrice += extras[k].price;
+                }
             }
 
             function wizardButtonClickedback() {
@@ -759,50 +1001,50 @@ function showBikeWizard()
                     case 2:
                         document.getElementById("bike-wizard-progress-bar").style.width = '20%';
                         document.getElementById("bike-wizard-text-field").innerHTML =  "<div class='wrapper'>" +
-                            "   <h1> Step 2 - Choose Your Color</h1>" +
+                            "   <h1> Step 2 - Choose Your colour</h1>" +
                             " <div class='col-sm-4'>" +
                             "    <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-classic_1.png' class='imgcolorbikewizard'> " +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-classic_1.png' class='imgcolourbikewizard'> " +
                             "       <label><input type='radio' name='optradio'>Classic</label> " +
                             "   </div> "+
                             "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-race_1_1.png' class='imgcolorbikewizard'> " +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-race_1_1.png' class='imgcolourbikewizard'> " +
                             "       <label><input type='radio' name='optradio'>Race</label> " +
                             "   </div> " +
                             "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/p/e/pepper_color.png' class='imgcolorbikewizard'> " +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/p/e/pepper_colour.png' class='imgcolourbikewizard'> " +
                             "       <label><input type='radio' name='optradio'>Pepper</label>" +
                             "   </div> " +
                             " </div>" +
 
                             " <div class='col-sm-4'>" +
                             "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/s/u/submarine_color.png' class='imgcolorbikewizard'> " +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/s/u/submarine_colour.png' class='imgcolourbikewizard'> " +
                             "       <label><input type='radio' name='optradio'>Submarine</label>" +
                             "   </div> " +
                             "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-bluebird_1.png' class='imgcolorbikewizard'> " +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-bluebird_1.png' class='imgcolourbikewizard'> " +
                             "       <label><input type='radio' name='optradio'>Bluebird</label>" +
                             "   </div> " +
                             "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-generic_2.png' class='imgcolorbikewizard'> " +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-generic_2.png' class='imgcolourbikewizard'> " +
                             "       <label><input type='radio' name='optradio'>Milk Plus</label>" +
                             "   </div> " +
                             " </div>" +
 
                             " <div class='col-sm-4'>" +
                             "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-clockwork_1.png' class='imgcolorbikewizard'> " +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-clockwork_1.png' class='imgcolourbikewizard'> " +
 
                             "       <label><input type='radio' name='optradio'>Clockwork</label>" +
                             "   </div> " +
                             "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-lizzard-king_1.png' class='imgcolorbikewizard'> " +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-lizzard-king_1.png' class='imgcolourbikewizard'> " +
 
                             "       <label><input type='radio' name='optradio'>Lizardking</label>" +
                             "   </div> " +
                             "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-raw_1.png' class='imgcolorbikewizard'> " +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-raw_1.png' class='imgcolourbikewizard'> " +
 
                             "       <label><input type='radio' name='optradio'>Rå</label>" +
                             "   </div> " +
@@ -1183,14 +1425,14 @@ function showBikeWizard()
                             " <div class='col-sm-4'>" +
                             "<h3> BBX </h3>" +
                             "  <div class='radio'> " +
-                            "<label><input type='radio' value='optradio'>color1</label>" +
+                            "<label><input type='radio' value='optradio'>colour1</label>" +
                             "</div> " +
 
                             "  <div class='radio'> " +
-                            "<label><input type='radio' value='optradio'>color2</label>" +
+                            "<label><input type='radio' value='optradio'>colour2</label>" +
                             "</div> " +
                             "  <div class='radio'> " +
-                            "<label><input type='radio' value='optradio'>color3 </label>" +
+                            "<label><input type='radio' value='optradio'>colour3 </label>" +
                             "</div> " +
                             "</div>" +
 
@@ -1266,9 +1508,9 @@ function showBikeWizard()
                         document.getElementById("bike-wizard-progress-bar").style.width = '70%';
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
                             "<h1>Step 7 - What you are buying</h1>" +
-                            "<p> Here you will find a list of what items you have checked off, and recommendations on what you are missing. <br>" +
-                            "Here you can check off things if you have regret or do not want to buy them. <br> " +
-                            "If everything seems as it is supposed to, then just click next and go to the payment site. </p>" +
+                            "<p> Here you will find a list of what items you have selected, and recommendations on what you are missing, if anything. <br>" +
+                            "Here you can deselect things if you have second thoughts and do not want to buy them. <br> " +
+                            "If everything seems to be in order, then just click next and go to the payment site. </p>" +
                             "</div>";
                         console.log(step);
                         break;
@@ -1325,7 +1567,7 @@ function showBikeWizard()
 
     <br />
 
-    <button type="button" class="btn btn-default" onclick="wizardButtonClickedback()">Back</button>
+        <button type="button" class="btn btn-default" onclick="wizardButtonClickedback()">Back</button>
         <button type="button" class="btn btn-default" onclick="wizardButtonClicked()">Next Step</button>
 
         <div id="bike-wizard-text-field">
