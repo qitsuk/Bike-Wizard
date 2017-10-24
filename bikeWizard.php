@@ -27,7 +27,8 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 1:
-                        document.getElementById("bike-wizard-progress-bar").style.width = '10%';
+                        updateProgressBar('10%');
+                        //document.getElementById("bike-wizard-progress-bar").style.width = '10%';
                         document.getElementById("bike-wizard-text-field").innerHTML =
                             "<div class='wrapper'>" +
                                 " <h1> Step 1 - Choose Your Bike</h1> " +
@@ -61,7 +62,8 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 2:
-                        document.getElementById("bike-wizard-progress-bar").style.width = '20%';
+                        //document.getElementById("bike-wizard-progress-bar").style.width = '20%';
+                        updateProgressBar('20%');
                         document.getElementById("bike-wizard-text-field").innerHTML =
                             "<div class='wrapper'>" +
                             "   <h1> Step 2 - Choose Your Color</h1>" +
@@ -116,7 +118,8 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 3:
-                        document.getElementById("bike-wizard-progress-bar").style.width = '30%';
+                        //document.getElementById("bike-wizard-progress-bar").style.width = '30%';
+                        updateProgressBar('30%');
                         document.getElementById("bike-wizard-text-field").innerHTML =
                             "<div class='wrapper'>" +
                             "   <h1> Step 3 - Model</h1>" +
@@ -396,7 +399,8 @@ function showBikeWizard()
                         console.log(step);
                         break ;
                     case 4:
-                        document.getElementById("bike-wizard-progress-bar").style.width = '40%';
+                        //document.getElementById("bike-wizard-progress-bar").style.width = '40%';
+                        updateProgressBar('40%');
                         document.getElementById("bike-wizard-text-field").innerHTML =  "<div class='wrapper'>" +
                             "<h1> Step 4 - Customise</h1>" +
                             "All our models feature powerful, hydraulic disc brake systems for smoother, more controlled stopping. We have purposefully chosen brakes from leading manufacturers Shimano, Magura and Tektro and matched them to the most relevant component groups. For simple aftermarket servicing, we have also ensured our brakes have great brake pad durability and easy aftermarket servicing." +
@@ -462,7 +466,8 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 5:
-                        document.getElementById("bike-wizard-progress-bar").style.width = '50%';
+                        //document.getElementById("bike-wizard-progress-bar").style.width = '50%';
+                        updateProgressBar('50%');
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
                             "<h1> Step 5 - Accessories</h1>" +
                             " <div class='col-sm-4'>" +
@@ -564,7 +569,8 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 6:
-                        document.getElementById("bike-wizard-progress-bar").style.width = '60%';
+                        //document.getElementById("bike-wizard-progress-bar").style.width = '60%';
+                        updateProgressBar('60%');
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
                             "<h1> Step 6 - Extras</h1>" +
                             "<div class='col-sm-6'>" +
@@ -598,7 +604,8 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 7:
-                        document.getElementById("bike-wizard-progress-bar").style.width = '70%';
+                        //document.getElementById("bike-wizard-progress-bar").style.width = '70%';
+                        updateProgressBar('70%');
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
                             "<h1>Step 7 - What you are buying</h1>" +
                             "<p> Here you will find a list of what items you have checked off, and recommendations on what you are missing. <br>" +
@@ -608,7 +615,8 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 8:
-                        document.getElementById("bike-wizard-progress-bar").style.width = '80%';
+                        //document.getElementById("bike-wizard-progress-bar").style.width = '80%';
+                        updateProgressBar('80%');
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
                             "<h1>Step 8 - Payment</h1>" +
                             "<p> This is the payment area. Where there will be a form where you can pay. " +
@@ -650,7 +658,8 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 9:
-                        document.getElementById("bike-wizard-progress-bar").style.width = '90%';
+                        //document.getElementById("bike-wizard-progress-bar").style.width = '90%';
+                        updateProgressBar('90%');
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
                             "<h1>Step 9 - Order confirmation</h1>" +
                             "<p> Here you can see you order, that are payed and waiting to be packed and shipped </p>" +
@@ -658,7 +667,8 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 10:
-                        document.getElementById("bike-wizard-progress-bar").style.width = '100%';
+                        //document.getElementById("bike-wizard-progress-bar").style.width = '100%';
+                        updateProgressBar('100%');
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
                             "<h1>Step 10 - Thank you for your purchase </h1>" +
                             "<p>Here is some other things you might find interesting </p>" +
@@ -667,7 +677,8 @@ function showBikeWizard()
                         break;
                     case 11:
                         if (this.step > 10) {this.step = 10;}
-                        document.getElementById("bike-wizard-progress-bar").style.width = '100%';
+                        //document.getElementById("bike-wizard-progress-bar").style.width = '100%';
+                        updateProgressBar('100%');
                         document.getElementById("bike-wizard-text-field").innerHTML ="<div class='wrapper'>" +
                             "<h1>Step 10 - Thank you for your purchase </h1>" +
                             "<p>Here is some other things you might find interesting </p>" +
@@ -1285,13 +1296,37 @@ function showBikeWizard()
 
                 }
             }
+
+            function updateProgressBar(percent) {
+                jQuery("#bike-wizard-progress-bar")[0].innerText = percent;
+                jQuery(".progress-bar").animate({
+                    width: percent
+                }, 1500);
+            }
+
         </script>
 
+<!--        <div class="progress">-->
+<!--            <div class="progress-bar" id="bike-wizard-progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%">-->
+<!--            <span class="sr-only">70% Complete</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div id="upload-progress" class="progress progress-striped active">-->
+<!--            <div class="bar" style="transition:none;"></div>-->
+<!--        </div>-->
+
         <div class="progress">
-            <div class="progress-bar" id="bike-wizard-progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%">
-            <span class="sr-only">70% Complete</span>
+            <div id="bike-wizard-progress-bar" style="transition:none;" class="progress-bar progress-bar-striped active" role="progressbar"
+                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100""> 0%
             </div>
         </div>
+
+
+    <br />
+
+    <button type="button" class="btn btn-default" onclick="wizardButtonClickedback()">Back</button>
+        <button type="button" class="btn btn-default" onclick="wizardButtonClicked()">Next Step</button>
 
         <div id="bike-wizard-text-field">
 <br>
@@ -1305,8 +1340,6 @@ function showBikeWizard()
 <br>
             This buyer’s guide is designed to help you choose the correct Bullitt model and pair you with the most appropriate accessories for your needs.
         </div>
-        <button type="button" class="btn btn-default" onclick="wizardButtonClickedback()">Back</button>
-        <button type="button" class="btn btn-default" onclick="wizardButtonClicked()">Next Step</button>
 
     <?php
 }
