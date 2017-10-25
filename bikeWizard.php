@@ -535,11 +535,11 @@ function showBikeWizard()
                             "  <div class='checkbox'>" +
                             " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/l/black_1.png' class='imgbikewizard'> " +
 
-                            "<label><input type='checkbox' id='raceBlackCheck' value=''>Race Black    +€54.00</label>" +
+                            "<br><label><input type='checkbox' id='raceBlackCheck' value=''>Race Black    +€54.00</label>" +
                              "</div> " +
                             "  <div class='checkbox'> " +
                             " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/a/saddle_white.png' class='imgbikewizard'> " +
-                            "<label><input type='checkbox' id='raceWhiteCheck' value=''>Race White    +€54.00</label>" +
+                            "<br><label><input type='checkbox' id='raceWhiteCheck' value=''>Race White    +€54.00</label>" +
                             "</div> " +
 
                             "  <div class='checkbox'> " +
@@ -650,17 +650,19 @@ function showBikeWizard()
                             "<label><input type='checkbox' id='damperCheck' value=''>Damper kit    +€120.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
-                            "<img src='http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/honeycompboard.png' class='imgbikewizard' >" +
+                            "<img src='http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/honeycompboard.png' id='honeycombimg' class='imgbikewizard' >" +
                             "<label><input type='checkbox' id='honeyCombCheck' value=''>Honeycomb board    +€188.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
                             "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/7/b/7b31bee8-1a42-45ba-b713-d3bd4086d8d9_lan.png' class='imgbikewizard' >" +
                             "<label><input type='checkbox' id='convoyCheck' value=''>Convoy box    +€833.00</label>" +
                             "</div> " +
+
                             "  <div class='checkbox'> " +
-                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/l/alubox.png' class='imgbikewizard >" +
-                            "<label><input type='checkbox' id='aluCheck' value=''>Aluminium box    +€341.00</label>" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/l/alubox.png' class='imgbikewizard' >" +
+                            "<label><input type='checkbox' id='aluCheck' value=''>Aluminium box     +€341.00</label>" +
                             "</div> " +
+
                             "  <div class='checkbox'> " +
                             "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/l/plastbox.png' class='imgbikewizard' >" +
                             "<label><input type='checkbox' id='plasticCheck' value=''>Plastic box    +€43.00</label>" +
@@ -997,7 +999,7 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 0:
-
+                        updateProgressBar('0%');
                         document.getElementById("bike-wizard-progress-bar").style.width = '0%';
                         document.getElementById("bike-wizard-text-field").innerHTML = "Introduction\n" +
                             "\n" +
@@ -1012,6 +1014,7 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 1:
+                        updateProgressBar('10%');
                         document.getElementById("bike-wizard-progress-bar").style.width = '10%';
                         document.getElementById("bike-wizard-text-field").innerHTML =  "<div class='wrapper'>" +
                             " <h1> Step 1 - Choose Your Bike</h1> " +
@@ -1045,60 +1048,60 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 2:
+                        updateProgressBar('20%');
                         document.getElementById("bike-wizard-progress-bar").style.width = '20%';
                         document.getElementById("bike-wizard-text-field").innerHTML =  "<div class='wrapper'>" +
                             "   <h1> Step 2 - Choose Your colour</h1>" +
                             " <div class='col-sm-4'>" +
                             "    <div class='radio'>" +
                             " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-classic_1.png' class='imgcolourbikewizard'> " +
-                            "       <label><input type='radio' name='optradio'>Classic</label> " +
+                            "       <label><input type='radio' id='classicRadio' name='optradio'>Classic</label> " +
                             "   </div> "+
                             "   <div class='radio'>" +
                             " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-race_1_1.png' class='imgcolourbikewizard'> " +
-                            "       <label><input type='radio' name='optradio'>Race</label> " +
+                            "       <label><input type='radio' id='raceRadio' name='optradio'>Race</label> " +
                             "   </div> " +
                             "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/p/e/pepper_colour.png' class='imgcolourbikewizard'> " +
-                            "       <label><input type='radio' name='optradio'>Pepper</label>" +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/p/e/pepper_color.png' class='imgcolourbikewizard'> " +
+                            "       <label><input type='radio' id='pepperRadio' name='optradio'>Pepper</label>" +
                             "   </div> " +
                             " </div>" +
-
                             " <div class='col-sm-4'>" +
                             "   <div class='radio'>" +
-                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/s/u/submarine_colour.png' class='imgcolourbikewizard'> " +
-                            "       <label><input type='radio' name='optradio'>Submarine</label>" +
+                            " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/s/u/submarine_color.png' class='imgcolourbikewizard'> " +
+                            "       <label><input type='radio' id='submarineRadio' name='optradio'>Submarine</label>" +
                             "   </div> " +
                             "   <div class='radio'>" +
                             " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-bluebird_1.png' class='imgcolourbikewizard'> " +
-                            "       <label><input type='radio' name='optradio'>Bluebird</label>" +
+                            "       <label><input type='radio' id='bluebirdRadio' name='optradio'>Bluebird</label>" +
                             "   </div> " +
                             "   <div class='radio'>" +
                             " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-generic_2.png' class='imgcolourbikewizard'> " +
-                            "       <label><input type='radio' name='optradio'>Milk Plus</label>" +
+                            "       <label><input type='radio' id='milkplusRadio' name='optradio'>Milk Plus</label>" +
                             "   </div> " +
                             " </div>" +
-
                             " <div class='col-sm-4'>" +
                             "   <div class='radio'>" +
                             " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-clockwork_1.png' class='imgcolourbikewizard'> " +
 
-                            "       <label><input type='radio' name='optradio'>Clockwork</label>" +
+                            "       <label><input type='radio' id='clockworkRadio' name='optradio'>Clockwork</label>" +
                             "   </div> " +
                             "   <div class='radio'>" +
                             " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-lizzard-king_1.png' class='imgcolourbikewizard'> " +
 
-                            "       <label><input type='radio' name='optradio'>Lizardking</label>" +
+                            "       <label><input type='radio' name='optradio' id='lizzardKingRadio' >Lizardking</label>" +
                             "   </div> " +
                             "   <div class='radio'>" +
                             " <img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/i/circle-raw_1.png' class='imgcolourbikewizard'> " +
 
-                            "       <label><input type='radio' name='optradio'>Rå</label>" +
+                            "       <label><input type='radio' name='optradio' id='råRadio'>Rå</label>" +
                             "   </div> " +
                             " </div>" +
                             "</div>";
                         console.log(step);
                         break;
                     case 3:
+                        updateProgressBar('30%');
                         document.getElementById("bike-wizard-progress-bar").style.width = '30%';
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
                             "   <h1> Step 3 - Model</h1>" +
@@ -1378,6 +1381,7 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 4:
+                        updateProgressBar('40%');
                         document.getElementById("bike-wizard-progress-bar").style.width = '40%';
                         document.getElementById("bike-wizard-text-field").innerHTML =   "<div class='wrapper'>" +
                             "<h1> Step 4 - Customise</h1>" +
@@ -1444,79 +1448,109 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 5:
+                        updateProgressBar('50%');
                         document.getElementById("bike-wizard-progress-bar").style.width = '50%';
                         document.getElementById("bike-wizard-text-field").innerHTML =  "<div class='wrapper'>" +
                             "<h1> Step 5 - Accessories</h1>" +
                             " <div class='col-sm-4'>" +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>Canopy</label>" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/o/dogcage_1.png' class='imgbikewizard' >" +
+                            "<label><input type='checkbox' id='canopyCheck' value=''>Canopy    +€449.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>Damper kit</label>" +
+                            "<img src='http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/alubox_1.png' class='imgbikewizard' >" +
+                            "<label><input type='checkbox' id='damperCheck' value=''>Damper kit    +€120.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>Honeycomb board (HCB)</label>" +
+                            "<img src='http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/honeycompboard.png' id='honeycombimg' class='imgbikewizard' >" +
+                            "<label><input type='checkbox' id='honeyCombCheck' value=''>Honeycomb board    +€188.00</label>" +
                             "</div> " +
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>Convoy box</label>" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/7/b/7b31bee8-1a42-45ba-b713-d3bd4086d8d9_lan.png' class='imgbikewizard' >" +
+                            "<label><input type='checkbox' id='convoyCheck' value=''>Convoy box    +€833.00</label>" +
                             "</div> " +
+
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>Aluminium box</label>" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/l/alubox.png' class='imgbikewizard' >" +
+                            "<label><input type='checkbox' id='aluCheck' value=''>Aluminium box     +€341.00</label>" +
                             "</div> " +
+
                             "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' value=''>Plastic box</label>" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/l/plastbox.png' class='imgbikewizard' >" +
+                            "<label><input type='checkbox' id='plasticCheck' value=''>Plastic box    +€43.00</label>" +
                             "</div> " +
                             "</div>" +
 
                             " <div class='col-sm-4'>" +
                             "<h3> BBX </h3>" +
+
+                            "<img src='http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/sidepanel_kit.png' class='imgbikewizard' >" +
                             "  <div class='radio'> " +
-                            "<label><input type='radio' value='optradio'>colour1</label>" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/b/bbx-sidepanel-kit-indigo.png' class='imgbikewizard' >" +
+                            "<label><input type='radio' id='blueBBXRadio' value='optradio'>Blue    +€354.00" +
+                            "</label>" +
                             "</div> " +
 
                             "  <div class='radio'> " +
-                            "<label><input type='radio' value='optradio'>colour2</label>" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/b/bbx-sidepanel-kit-race.png' class='imgbikewizard' >" +
+
+                            "<label><input type='radio' id='greenBBXRadio' value='optradio'>Green     +€354.00</label>" +
                             "</div> " +
                             "  <div class='radio'> " +
-                            "<label><input type='radio' value='optradio'>colour3 </label>" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/b/bbx-sidepanel-kit-submarine_1.png' class='imgbikewizard' >" +
+
+                            "<label><input type='radio' id='yellowBBXRadio' value='optradio'>Yellow    +€354.00</label>" +
                             "</div> " +
                             "</div>" +
 
                             " <div class='col-sm-4'>" +
                             "<h3> Billboard </h3>" +
+                            "<img src='http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/billboard.png' class='imgbikewizard' >" +
+
                             "  <div class='radio'> " +
-                            "<label><input type='radio' value='optradio'>1 </label>" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/3/2/32_1_1.png' class='imgcolourbikewizard' >" +
+                            "<label><input type='radio' id='whiteBillRadio' value='optradio'>1    +€69.00</label>" +
+                            "</div> " +
+
+                            "  <div class='radio'> " +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/3/2/323_2.png' class='imgcolourbikewizard' >" +
+                            "<label><input type='radio' id='blackBillRadio' value='optradio'>2    +€69.00</label>" +
+                            "</div> " +
+
+                            "  <div class='radio'> " +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/5/0/502_4.png' class='imgcolourbikewizard' >" +
+                            "<label><input type='radio' id='redBillRadio' value='optradio'>3    +€69.00</label>" +
+                            "</div> " +
+
+                            "  <div class='radio'> " +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/5/0/503_3.png' class='imgcolourbikewizard' >" +
+
+                            "<label><input type='radio' id='orangeBillRadio' value='optradio'>4    +€69.00</label>" +
                             "</div> " +
                             "  <div class='radio'> " +
-                            "<label><input type='radio' value='optradio'>2   </label>" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/5/0/504_1_1.png' class='imgcolourbikewizard' >" +
+
+                            "<label><input type='radio' id='blueBillRadio' value='optradio'>5    +€69.00</label>" +
                             "</div> " +
                             "  <div class='radio'> " +
-                            "<label><input type='radio' value='optradio'>3  </label>" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/5/0/506_3.png' class='imgcolourbikewizard' >" +
+
+                            "<label><input type='radio' id='greenBillRadio' value='optradio'>6    +€69.00</label>" +
                             "</div> " +
                             "  <div class='radio'> " +
-                            "<label><input type='radio' value='optradio'>4  </label>" +
+                            "<img src='http://shop.larryvsharry.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/5/0/508_3.png' class='imgcolourbikewizard' >" +
+
+                            "<label><input type='radio' id='yellowBillRadio' value='optradio'>7    +€69.00</label>" +
                             "</div> " +
-                            "  <div class='radio'> " +
-                            "<label><input type='radio' value='optradio'>5  </label>" +
-                            "</div> " +
-                            "  <div class='radio'> " +
-                            "<label><input type='radio' value='optradio'>6  </label>" +
-                            "</div> " +
-                            "  <div class='radio'> " +
-                            "<label><input type='radio' value='optradio'>7  </label>" +
-                            "</div> " +
-                            "  <div class='radio'> " +
-                            "<label><input type='radio' value='optradio'>8  </label>" +
-                            "</div> " +
-                            "  <div class='radio'> " +
-                            "<label><input type='radio' value='optradio'>9  </label>" +
-                            "</div> " +
+
                             "</div>" +
-                            "<p>The BBX side + cover, Foldable seat and Canopy all need the HCB.<p>" +
+                            " <br> <br>" +
+                            " <div class='bikenote' >  <p >The BBX side + cover, Foldable seat and Canopy all need the HCB.<p> </div> " +
                             "</div>";
                         console.log(step);
                         break;
                     case 6:
+                        updateProgressBar('60%');
                         document.getElementById("bike-wizard-progress-bar").style.width = '60%';
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
                             "<h1> Step 6 - Extras</h1>" +
@@ -1551,6 +1585,7 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 7:
+                        updateProgressBar('70%');
                         document.getElementById("bike-wizard-progress-bar").style.width = '70%';
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
                             "<h1>Step 7 - What you are buying</h1>" +
@@ -1561,6 +1596,7 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 8:
+                        updateProgressBar('80%');
                         document.getElementById("bike-wizard-progress-bar").style.width = '80%';
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
                             "<h1>Step 8 - Payment</h1>" +
@@ -1569,6 +1605,7 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 9:
+                        updateProgressBar('90%');
                         document.getElementById("bike-wizard-progress-bar").style.width = '90%';
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
                             "<h1>Step 9 - Order confirmation</h1>" +
@@ -1589,7 +1626,7 @@ function showBikeWizard()
                 jQuery("#bike-wizard-progress-bar")[0].innerText = percent;
                 jQuery(".progress-bar").animate({
                     width: percent
-                }, 1500);
+                }, 100);
             }
 
         </script>
