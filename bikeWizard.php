@@ -31,12 +31,12 @@ function showBikeWizard()
             var saddleB67Black = { name: "", price: 0, image: "" };
             var customize = [];
 
-            var damperKit = { name: 'Damper Kit', price: 120, image: 'http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/alubox_1.png' };
-            var canopy = { name: 'Canopy', price: 449, image: "http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/o/dogcage_1.png"};
-            var honeycombBoard = { name: 'Honeycomb Board (HCB)', price: 188, image: 'http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/honeycompboard.png' };
-            var convoyBox = { name: 'Convey Box', price: 833, image: 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/7/b/7b31bee8-1a42-45ba-b713-d3bd4086d8d9_lan.png' };
-            var aluminumBox = { name: 'Aluminum Box', price: 341, image: 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/l/alubox.png' };
-            var plasticBox = { name: 'Plastic Box', price: 43, image: 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/l/plastbox.png' };
+            var damperKit = { name: 'Damper Kit', colour: '', price: 120, image: 'http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/alubox_1.png' };
+            var canopy = { name: 'Canopy', colour: '', price: 449, image: "http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/o/dogcage_1.png"};
+            var honeycombBoard = { name: 'Honeycomb Board (HCB)', colour: '', price: 188, image: 'http://shop.larryvsharry.com/skin/frontend/lvsh/lvsh/images/honeycompboard.png' };
+            var convoyBox = { name: 'Convey Box', colour: '', price: 833, image: 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/7/b/7b31bee8-1a42-45ba-b713-d3bd4086d8d9_lan.png' };
+            var aluminumBox = { name: 'Aluminum Box', colour: '', price: 341, image: 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/l/alubox.png' };
+            var plasticBox = { name: 'Plastic Box', colour: '', price: 43, image: 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/l/plastbox.png' };
             var bbx = { name: 'BBX', colour: '', price: 354, image: '' };
             var billBoard = { name: 'Billboard', colour: '', price: 69, image: '' };
             var accessories = [];
@@ -92,12 +92,12 @@ function showBikeWizard()
                         console.log(step);
                         break;
                     case 1:
-
                         updateProgressBar('10%');
                         //document.getElementById("bike-wizard-progress-bar").style.width = '10%';
                         document.getElementById("bike-wizard-text-field").innerHTML =
                             "<div class='wrapper'><h1> Step 1 - Choose Your Bike</h1> " + fullBike.text + frameKit.text + eBullitt.text + "</div> ";
                         console.log(step);
+                        console.log(totalPrice);
                         break;
                     case 2:
                         if (jQuery("#fullBikeRadio").is(':checked')) {
@@ -113,6 +113,9 @@ function showBikeWizard()
                             frame.price += 3642;
                             frame.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/e/b/ebullit_drivetrain2_test_3.png';
                         }
+//                        else if (!jQuery("#fullBikeRadio").is(':checked') && !jQuery("#frameKitRadio").is(':checked') && !jQuery("#eBullittRadio").is(':checked')) {
+//                            alert('You have to pick a frame. No frame, no cake!');
+//                        }
                         //document.getElementById("bike-wizard-progress-bar").style.width = '20%';
                         updateProgressBar('20%');
                         document.getElementById("bike-wizard-text-field").innerHTML =
@@ -165,6 +168,7 @@ function showBikeWizard()
                             " </div>" +
                             "</div>";
                         console.log(step);
+                        console.log(totalPrice);
                         break;
                     case 3:
                         if (jQuery("#classicRadio").is(':checked')) {
@@ -199,7 +203,7 @@ function showBikeWizard()
                         updateProgressBar('30%');
                         document.getElementById("bike-wizard-text-field").innerHTML =
                             "<div class='wrapper'>" +
-                            "   <h1> Step 3 - Model</h1>" +
+                            "   <h1> Step 3 - Drive Train</h1>" +
 
                             "<div class='col-sm-6'>" +
 
@@ -474,6 +478,7 @@ function showBikeWizard()
                             "" +
                             "</div>";
                         console.log(step);
+                        console.log(totalPrice);
                         break ;
                     case 4:
                         updateProgressBar('40%');
@@ -517,11 +522,11 @@ function showBikeWizard()
                             "</div> " +
                             " <div class='col-sm-4'>" +
                             "<h3> Seatposts </h3>" +
-                            "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' id='shortRadio' value=''>Short    +€42.00</label>" +
+                            "  <div class='radio'> " +
+                            "<label><input type='radio' id='shortRadio' name='optradio' value=''>Short    +€42.00</label>" +
                             "</div> " +
-                            "  <div class='checkbox'> " +
-                            "<label><input type='checkbox' id='longRadio' value=''>Long    +€42.00</label>" +
+                            "  <div class='radio'> " +
+                            "<label><input type='radio' id='longRadio' name='optradio' value=''>Long    +€42.00</label>" +
                             "</div>" +
                             "<p>The Bullitt is a one frame solution, designed to fit the greatest number of people and we have spent years tweaking geometry. A sloping top tube, short back-end and low bottom bracket means great manueveurability. We offer two different seatpost lengths and two different stem lengths to cater for different users and our Easyup Stemlifter means the cockpit can quickly and easily be raised to enable more space in the cargo area.</p>" +
                             "</div> " +
@@ -562,6 +567,7 @@ function showBikeWizard()
                             "</div> " +
                             "</div>";
                         console.log(step);
+                        console.log(totalPrice);
                         break;
                     case 5:
                         if (jQuery("#riserCheck").is(':checked')) {
@@ -630,7 +636,6 @@ function showBikeWizard()
                             saddleB67Black.image = 'http://shop.larryvsharry.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/l/black_1_2.png'
                             customize.push(saddleB67Black);
                         }
-                        console.log();
                         //document.getElementById("bike-wizard-progress-bar").style.width = '50%';
                         updateProgressBar('50%');
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
@@ -729,6 +734,7 @@ function showBikeWizard()
                             " <div class='bikenote' >  <p >The BBX side + cover, Foldable seat and Canopy all need the HCB.<p> </div> " +
                             "</div>";
                         console.log(step);
+                        console.log(totalPrice);
                         break;
                     case 6:
                         //document.getElementById("bike-wizard-progress-bar").style.width = '60%';
@@ -752,28 +758,38 @@ function showBikeWizard()
                         }
                         if (jQuery("#blueBBXRadio").is(':checked')) {
                             bbx.colour = 'Blue';
+                            accessories.push(bbx);
                         } else if (jQuery("#greenBBXRadio").is(':checked')) {
                             bbx.colour = 'Green';
+                            accessories.push(bbx);
                         } else if (jQuery("#yellowBBXRadio").is(':checked')) {
                             bbx.colour = 'Yellow';
+                            accessories.push(bbx);
                         }
-                        accessories.push(bbx);
+
                         if (jQuery("#whiteBillRadio").is(':checked')) {
                             billBoard.colour = 'White';
+                            accessories.push(billBoard);
                         } else if (jQuery("#blackBillRadio").is(':checked')) {
                             billBoard.colour = 'Black';
+                            accessories.push(billBoard);
                         } else if (jQuery("#redBillRadio").is(':checked')) {
                             billBoard.colour = 'Red';
+                            accessories.push(billBoard);
                         } else if (jQuery("#orangeBillRadio").is(':checked')) {
                             billBoard.colour = 'Orange';
+                            accessories.push(billBoard);
                         } else if (jQuery("#blueBillRadio").is(':checked')) {
                             billBoard.colour = 'Blue';
+                            accessories.push(billBoard);
                         } else if (jQuery("#greenBillRadio").is(':checked')) {
                             billBoard.colour = 'Green';
+                            accessories.push(billBoard);
                         } else if (jQuery("#yellowBillRadio").is(':checked')) {
                             billBoard.colour = 'Yellow';
+                            accessories.push(billBoard);
                         }
-                        accessories.push(billBoard);
+
                         updateProgressBar('60%');
                         document.getElementById("bike-wizard-text-field").innerHTML = "<div class='wrapper'>" +
                             "<h1> Step 6 - Extras</h1>" +
@@ -804,6 +820,7 @@ function showBikeWizard()
                             "</div> " +
                             "</div>";
                         console.log(step);
+                        console.log(totalPrice);
                         break;
                     case 7:
                         if (jQuery("#dynamoCheck").is(':checked')) {
@@ -827,7 +844,6 @@ function showBikeWizard()
                         if (jQuery("#abusBordoPlusCheck").is(':checked')) {
                             extras.push(abusBordoPlus);
                         }
-
                         calculateTotalPrice();
                         //document.getElementById("bike-wizard-progress-bar").style.width = '70%';
                         updateProgressBar('70%');
@@ -837,12 +853,13 @@ function showBikeWizard()
                             "Here you can check off things if you have regret or do not want to buy them. <br> " +
                             "If everything seems like it is in order, then just click next and go to the payment site. </p>" +
                             "</div>" +
-                            "<div>" +
-                            "" +
-                            "" +
-                            "" +
-                            "Subtotal: €" + totalPrice + "</div>";
+                            "<div> " + showSelectedFrame() + "</div>" +
+                            "<div> " + showSelectedCustomizeOptions() + "</div>" +
+                            "<div> " + showSelectedAccessories() + "</div>" +
+                            "<div> " + showSelectedExtras() + "</div>" +
+                            "<div>Subtotal: €" + totalPrice + "</div>";
                         console.log(step);
+                        console.log('€' + totalPrice );
                         break;
                     case 8:
                         //document.getElementById("bike-wizard-progress-bar").style.width = '80%';
@@ -895,6 +912,7 @@ function showBikeWizard()
                             "<p> Here you can see you order, that are payed and waiting to be packed and shipped </p>" +
                             "</div>";
                         console.log(step);
+                        console.log(totalPrice);
                         break;
                     case 10:
                         //document.getElementById("bike-wizard-progress-bar").style.width = '100%';
@@ -914,6 +932,7 @@ function showBikeWizard()
                             "<p>Here is some other things you might find interesting </p>" +
                             "</div>";
                         console.log(step);
+                        console.log(totalPrice);
                         break;
                     default:
                        // document.getElementById("bike-wizard-progress-bar").style.width = '100%';
@@ -922,6 +941,33 @@ function showBikeWizard()
                         break;
 
                 }
+            }
+
+            function showSelectedFrame() {
+                return 'You have selected a ' + colour.name  + ' ' + frame.name + ' , with an ' + driveTrain.name + ' drivetrain.';
+            }
+            function showSelectedCustomizeOptions() {
+                var returnString = '<br>You have customized your Bullitt with: <br>'
+                for (i = 0; i < customize.length; i++) {
+                    returnString+= customize[i].name + "<br>";
+                }
+                return returnString;
+            }
+            function showSelectedAccessories() {
+                var returnString = '<br>You have chosen the following accessories: <br>';
+                for (i = 0; i < accessories.length; i++) {
+                    returnString += 'a/an ' + accessories[i].colour + ' ' + accessories[i].name + '<br>';
+                }
+                return returnString;
+            }
+
+
+            function showSelectedExtras() {
+                var returnString = '<br>And you\'ve chosen the following extras:<br>';
+                for (i = 0; i < extras.length; i++) {
+                    returnString += extras[i].name + '<br>';
+                }
+                return returnString;
             }
 
             function calculateTotalPrice() {
@@ -1571,17 +1617,20 @@ function showBikeWizard()
         <button type="button" class="btn btn-default" onclick="wizardButtonClicked()">Next Step</button>
 
         <div id="bike-wizard-text-field">
-<br>
+            <br>
             Bullitt’s are as different as the people who ride them and with years of experience, we have developed what we believe to be the ultimate, do-it-all cargo bike.
-<br>
+            <br>
             Designed, built and ridden daily in Copenhagen and across the globe.
             <br>
             9 colour options and a diverse component and accessory line.
-<br>
+            <br>
             With quick delivery and availability, competitive pricing and a highly developed system of components and accessories, the Bullitt is the quickest, most flexible and durable solution currently on the market.
-<br>
+            <br>
             This buyer’s guide is designed to help you choose the correct Bullitt model and pair you with the most appropriate accessories for your needs.
         </div>
+
+        <button type="button" class="btn btn-default" onclick="wizardButtonClickedback()">Back</button>
+        <button type="button" class="btn btn-default" onclick="wizardButtonClicked()">Next Step</button>
 
     <?php
 }
